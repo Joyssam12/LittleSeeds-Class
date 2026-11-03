@@ -1553,6 +1553,133 @@
     .tb-teams { grid-template-columns: 1fr; gap: 28px; }
   }
 
+
+  /* ===== 출석 탭 ===== */
+  .panel.attend { display: block; background: none; border: none; padding: 0; min-height: 0; text-align: center; }
+  .att-summary { display: grid; grid-template-columns: 1fr 1.4fr; gap: 14px; margin-bottom: 16px; }
+  .att-box {
+    padding: 16px 20px;
+    border-radius: 26px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 20px rgba(44, 62, 80, 0.08);
+  }
+  .att-box.total { background: #E9F5DE; }
+  .att-box.best { background: #FFF4D6; }
+  .att-box-label { font-size: clamp(20px, 2.8vw, 26px); font-weight: 800; opacity: 0.8; }
+  .att-box-value { font-size: clamp(44px, 7vw, 72px); font-weight: 900; line-height: 1.15; color: #3F7A32; }
+  .att-box-value small { font-size: 0.45em; margin-left: 4px; color: #2C3E50; }
+  .att-box-value.best-names { font-size: clamp(26px, 4vw, 40px); color: #2C3E50; padding-top: 8px; word-break: keep-all; }
+  .att-note {
+    margin: 0 0 14px;
+    padding: 10px 16px;
+    border-radius: 16px;
+    background: #FFF4D6;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .att-note[hidden] { display: none !important; }
+  .att-offline {
+    display: inline-block;
+    margin: 0 0 10px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: #FFF1D6;
+    border: 2px solid #F3C45A;
+    font-size: 16px;
+    font-weight: 800;
+    color: #8A5A1E;
+  }
+  .att-offline[hidden] { display: none !important; }
+  .att-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+  @media (min-width: 1000px) { .att-list { grid-template-columns: 1fr 1fr; } }
+  .att-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 24px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 16px rgba(44, 62, 80, 0.07);
+    text-align: left;
+  }
+  .att-who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .att-emoji {
+    flex: 0 0 auto;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: #EDF5E4;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; line-height: 1;
+  }
+  .att-name { font-size: clamp(26px, 3.6vw, 32px); font-weight: 900; white-space: nowrap; }
+  .att-mid { grid-column: 1 / -1; order: 3; display: flex; align-items: center; gap: 10px; min-width: 0; padding: 0 6px; }
+  .att-leaves {
+    flex: 1; min-width: 0;
+    font-size: clamp(22px, 3vw, 28px);
+    line-height: 1.25;
+    letter-spacing: -2px;
+    word-break: break-all;
+  }
+  .att-leaves .new { display: inline-block; animation: sprout .6s cubic-bezier(.2, 1.6, .4, 1); }
+  @keyframes sprout { from { transform: scale(0) translateY(10px); } to { transform: scale(1); } }
+  .att-count {
+    flex: 0 0 auto;
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: #E9F5DE;
+    color: #3F7A32;
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 900;
+    white-space: nowrap;
+  }
+  .att-pm { display: flex; gap: 8px; }
+  .att-btn {
+    width: 72px; height: 72px;
+    border: none; border-radius: 22px;
+    font: inherit; font-size: 40px; font-weight: 900; line-height: 1;
+    cursor: pointer; touch-action: manipulation;
+  }
+  .att-btn.plus { background: #3F7A32; color: #FFFFFF; box-shadow: 0 5px 0 #2E5B24; }
+  .att-btn.minus { background: #F1EEE6; color: #2C3E50; box-shadow: 0 5px 0 #D8D2C4; }
+  .att-btn:active { transform: translateY(4px); box-shadow: none; }
+  .att-btn:disabled { opacity: 0.35; cursor: default; transform: none; box-shadow: none; }
+  .att-btn:focus-visible, .att-all:focus-visible { outline: 4px solid #2C3E50; outline-offset: 3px; }
+  .att-bottom { margin-top: 20px; }
+  .att-all {
+    min-height: 84px;
+    padding: 12px 44px;
+    border: none; border-radius: 999px;
+    background: #F3C45A; color: #2C3E50;
+    font: inherit; font-size: clamp(28px, 4vw, 36px); font-weight: 900;
+    cursor: pointer; touch-action: manipulation;
+    box-shadow: 0 6px 0 #C9982E;
+  }
+  .att-all.confirm { background: #3F7A32; color: #FFFFFF; box-shadow: 0 6px 0 #2E5B24; }
+  .att-all:active { transform: translateY(4px); box-shadow: none; }
+  .att-all:disabled { opacity: 0.4; cursor: default; }
+  .att-reset {
+    margin-top: 18px;
+    min-height: 64px;
+    padding: 8px 30px;
+    border: 3px solid #E6E2D6; border-radius: 999px;
+    background: #FFFFFF; color: #2C3E50;
+    font: inherit; font-size: clamp(22px, 3vw, 26px); font-weight: 800;
+    cursor: pointer; touch-action: manipulation;
+  }
+  .att-reset.confirm { background: #E35D5D; border-color: #E35D5D; color: #FFFFFF; }
+  .att-reset:disabled { opacity: 0.4; cursor: default; }
+  .att-reset:focus-visible { outline: 4px solid #2C3E50; outline-offset: 3px; }
+  @media (max-width: 640px) {
+    .att-summary { grid-template-columns: 1fr; }
+    .att-row { grid-template-columns: 1fr auto; }
+    .att-mid { grid-column: 1 / -1; order: 3; }
+  }
+  @media (prefers-reduced-motion: reduce) { .att-leaves .new { animation: none; } }
+
   /* ===== 반 이름 강조 ===== */
   .header-text { display: block !important; }
   header h1.class-name {
@@ -3130,8 +3257,24 @@
     </div>
     </div>
   </section>
-  <section class="panel" role="tabpanel" id="panel-attendance" aria-labelledby="tab-attendance" hidden>
-    <h2>출석</h2><p>다음 주에 만듭니다</p>
+  <section class="panel attend" role="tabpanel" id="panel-attendance" aria-labelledby="tab-attendance" hidden>
+    <div class="att-offline" id="attOffline" role="status" hidden>📴 기기에만 저장 중</div>
+    <div class="att-summary">
+      <div class="att-box total">
+        <div class="att-box-label">우리 반 누적 출석</div>
+        <div class="att-box-value"><span id="attTotal">0</span><small>번</small></div>
+      </div>
+      <div class="att-box best">
+        <div class="att-box-label">🏅 가장 많이 온 친구</div>
+        <div class="att-box-value best-names" id="attBest">아직 없어요</div>
+      </div>
+    </div>
+    <div class="att-note" id="attNote" role="status" hidden></div>
+    <ul class="att-list" id="attList"></ul>
+    <div class="att-bottom">
+      <button type="button" class="att-all" id="attAll">🌱 오늘 모두 ＋1</button>
+      <div><button type="button" class="att-reset" id="attReset">↺ 출석 처음부터</button></div>
+    </div>
   </section>
   <section class="panel" role="tabpanel" id="panel-talent" aria-labelledby="tab-talent" hidden>
     <h2>달란트</h2><p>다음 주에 만듭니다</p>
@@ -4136,6 +4279,295 @@
       onChange: function (f) { listeners.push(f); }
     };
     render();
+  })();
+
+  // 출석: 온 횟수만 쌓기 — Supabase 출석 표에 저장, 기기에도 함께 저장
+  (function () {
+    // Supabase 연결 정보 (공개 키만 사용. 비밀 키는 넣지 않습니다)
+    var SB_URL = 'https://baerqcxnijmpivtjmhsn.supabase.co';
+    var SB_KEY = 'sb_publishable_ldcJtDYrqbwTRoBm_ZIbKQ_0I3zpq6r';
+    var TABLE = SB_URL + '/rest/v1/attendance';
+
+    // 우리 반 명단 (id는 저장용 고정 번호. 이름을 바꿔도 기록이 이어지도록 id는 그대로 둡니다)
+    var ROSTER = [
+      { id: 's01', name: '다람쥐' }, { id: 's02', name: '토끼' }, { id: 's03', name: '사슴' },
+      { id: 's04', name: '사자' }, { id: 's05', name: '참새' }, { id: 's06', name: '비둘기' },
+      { id: 's07', name: '나비' }, { id: 's08', name: '꿀벌' }, { id: 's09', name: '독수리' },
+      { id: 's10', name: '코끼리' }, { id: 's11', name: '곰돌이' }, { id: 's12', name: '부엉이' },
+      { id: 's13', name: '고래' }
+    ];
+
+    // 이름 → 그림. 이름에 낱말이 들어 있으면 그 그림, 없으면 남은 그림에서 골라 반 안에서 겹치지 않게.
+    var KNOWN = [
+      ['다람쥐', '🐿️'], ['토끼', '🐰'], ['사슴', '🦌'], ['사자', '🦁'], ['참새', '🐦'], ['비둘기', '🕊️'],
+      ['나비', '🦋'], ['꿀벌', '🐝'], ['벌', '🐝'], ['독수리', '🦅'], ['코끼리', '🐘'], ['곰', '🐻'],
+      ['부엉이', '🦉'], ['올빼미', '🦉'], ['고래', '🐳'], ['고양이', '🐱'], ['강아지', '🐶'], ['개', '🐶'],
+      ['여우', '🦊'], ['판다', '🐼'], ['호랑이', '🐯'], ['원숭이', '🐵'], ['돼지', '🐷'], ['양', '🐑'],
+      ['소', '🐮'], ['말', '🐴'], ['기린', '🦒'], ['얼룩말', '🦓'], ['펭귄', '🐧'], ['병아리', '🐥'],
+      ['닭', '🐔'], ['오리', '🦆'], ['거북', '🐢'], ['개구리', '🐸'], ['물고기', '🐟'], ['돌고래', '🐬'],
+      ['문어', '🐙'], ['게', '🦀'], ['달팽이', '🐌'], ['무당벌레', '🐞'], ['코알라', '🐨'], ['햄스터', '🐹'],
+      ['생쥐', '🐭'], ['쥐', '🐭'], ['수달', '🦦'], ['고슴도치', '🦔'], ['캥거루', '🦘'], ['하마', '🦛'],
+      ['악어', '🐊'], ['공룡', '🦕'], ['앵무새', '🦜'], ['홍학', '🦩'], ['백조', '🦢'], ['해바라기', '🌻'],
+      ['꽃', '🌸'], ['별', '⭐'], ['해', '🌞'], ['달', '🌙'], ['무지개', '🌈'], ['사과', '🍎'], ['딸기', '🍓']
+    ];
+    var POOL = ['🐶', '🐱', '🦊', '🐼', '🐯', '🐨', '🐹', '🐸', '🐧', '🐥', '🐢', '🐬', '🐙', '🦒', '🦓',
+                '🐮', '🐷', '🐑', '🦜', '🦩', '🦔', '🦦', '🐞', '🐌', '🌻', '🌸', '🌈', '⭐', '🍎', '🍓',
+                '🍀', '🌷', '🍊', '🍋', '🍇', '🍉', '🎈', '🪁', '⛵', '🚂'];
+    function assignEmojis(list) {
+      var used = {}, out = {};
+      // 1) 이름과 정확히 같은 것 먼저, 2) 이름에 들어 있는 긴 낱말 순으로
+      var byLen = KNOWN.slice().sort(function (a, b) { return b[0].length - a[0].length; });
+      list.forEach(function (st) {
+        var exact = KNOWN.filter(function (k) { return k[0] === st.name; })[0];
+        var cand = exact ? [exact[1]] : byLen.filter(function (k) { return st.name.indexOf(k[0]) !== -1; }).map(function (k) { return k[1]; });
+        var pick = cand.filter(function (e) { return !used[e]; })[0];
+        if (pick) { used[pick] = 1; out[st.id] = pick; }
+      });
+      // 3) 아직 그림이 없는 이름은 남은 그림에서 (이름에 따라 늘 같은 그림이 나오도록)
+      list.forEach(function (st) {
+        if (out[st.id]) return;
+        var h = 0; for (var i = 0; i < st.name.length; i++) h = (h * 31 + st.name.charCodeAt(i)) % 9973;
+        for (var k = 0; k < POOL.length; k++) {
+          var e = POOL[(h + k) % POOL.length];
+          if (!used[e]) { used[e] = 1; out[st.id] = e; return; }
+        }
+        out[st.id] = '🙂';
+      });
+      return out;
+    }
+    var EMOJI = assignEmojis(ROSTER);
+
+    var counts = {}; ROSTER.forEach(function (st) { counts[st.id] = 0; });
+    var dirty = {};          // 아직 Supabase에 못 올린 아이 (id → true)
+
+    // ── 기기 저장 (키 이름은 그대로) ───────────────────────────
+    var LS_KEY = 'littleseeds-attendance';
+    function saveLocal() {
+      try { localStorage.setItem(LS_KEY, JSON.stringify({ counts: counts, dirty: dirty, savedAt: Date.now() })); } catch (e) {}
+    }
+    function loadLocal() {
+      try {
+        var raw = localStorage.getItem(LS_KEY);
+        if (!raw) return;
+        var v = JSON.parse(raw);
+        if (v && v.counts) ROSTER.forEach(function (st) {
+          var n = v.counts[st.id];
+          if (typeof n === 'number' && n >= 0) counts[st.id] = Math.floor(n);
+        });
+        if (v && v.dirty) ROSTER.forEach(function (st) { if (v.dirty[st.id]) dirty[st.id] = true; });
+      } catch (e) {}
+    }
+    loadLocal();
+
+    var listEl = document.getElementById('attList');
+    var note = document.getElementById('attNote');
+    var offlineEl = document.getElementById('attOffline');
+    var allBtn = document.getElementById('attAll');
+    var resetBtn = document.getElementById('attReset');
+
+    function setOffline(on) { offlineEl.hidden = !on; }
+    function showNote(t) { note.textContent = t; note.hidden = !t; }
+
+    // ── Supabase와 주고받기 (fetch) ─────────────────────────
+    function sbFetch(url, opts) {
+      opts = opts || {};
+      var ctrl = ('AbortController' in window) ? new AbortController() : null;
+      var t = ctrl ? setTimeout(function () { ctrl.abort(); }, 10000) : null;
+      var headers = { 'apikey': SB_KEY, 'Content-Type': 'application/json' };
+      if (opts.prefer) headers['Prefer'] = opts.prefer;
+      var p;
+      try {
+        p = fetch(url, { method: opts.method || 'GET', headers: headers, body: opts.body, signal: ctrl ? ctrl.signal : undefined, cache: 'no-store' });
+      } catch (e) { p = Promise.reject(e); }
+      return p.then(function (res) {
+        if (t) clearTimeout(t);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.status === 204 ? null : res.text().then(function (x) { return x ? JSON.parse(x) : null; });
+      }, function (e) { if (t) clearTimeout(t); throw e; });
+    }
+    function nameOf(id) { for (var i = 0; i < ROSTER.length; i++) if (ROSTER[i].id === id) return ROSTER[i].name; return null; }
+    function idOf(name) { for (var i = 0; i < ROSTER.length; i++) if (ROSTER[i].name === name) return ROSTER[i].id; return null; }
+
+    // 가명별 줄을 한꺼번에 저장 (있으면 고치고, 없으면 새로 넣기)
+    function upsert(ids) {
+      var rows = ids.map(function (id) { return { nickname: nameOf(id), count: counts[id] || 0 }; });
+      return sbFetch(TABLE + '?on_conflict=nickname', {
+        method: 'POST',
+        prefer: 'resolution=merge-duplicates,return=minimal',
+        body: JSON.stringify(rows)
+      });
+    }
+    // 명단에 있는데 표에 없는 가명은 0으로 새로 넣기 (이미 있으면 그대로 둠)
+    function insertMissing(names) {
+      if (!names.length) return Promise.resolve();
+      return sbFetch(TABLE + '?on_conflict=nickname', {
+        method: 'POST',
+        prefer: 'resolution=ignore-duplicates,return=minimal',
+        body: JSON.stringify(names.map(function (n) { return { nickname: n, count: 0 }; }))
+      });
+    }
+
+    // 바뀐 것 올리기: 잠깐 모았다가 한 번에. 실패하면 기기에만 저장하고 나중에 다시
+    var pushTimer = null, pushing = false, retryTimer = null;
+    function schedulePush(delay) {
+      clearTimeout(pushTimer);
+      pushTimer = setTimeout(push, delay == null ? 400 : delay);
+    }
+    function push() {
+      var ids = Object.keys(dirty);
+      if (!ids.length) return Promise.resolve(true);
+      if (pushing) { schedulePush(600); return Promise.resolve(false); }
+      pushing = true;
+      var sent = {}; ids.forEach(function (id) { sent[id] = counts[id]; });
+      return upsert(ids).then(function () {
+        ids.forEach(function (id) { if (counts[id] === sent[id]) delete dirty[id]; });
+        saveLocal();
+        pushing = false;
+        if (Object.keys(dirty).length) schedulePush(200);
+        else { setOffline(false); clearTimeout(retryTimer); }
+        return true;
+      }, function () {
+        pushing = false;
+        goOffline();
+        return false;
+      });
+    }
+    function goOffline() {
+      setOffline(true);
+      clearTimeout(retryTimer);
+      retryTimer = setTimeout(sync, 30000);   // 30초마다 다시 연결해 봄
+    }
+
+    // 불러오기: 표에서 읽고, 없는 가명은 0으로 넣고, 기기에만 있던 변경은 올림
+    var syncing = false;
+    function sync() {
+      if (syncing) return;
+      syncing = true;
+      clearTimeout(retryTimer);
+      sbFetch(TABLE + '?select=nickname,count')
+        .then(function (rows) {
+          var seen = {};
+          (rows || []).forEach(function (r) {
+            var id = idOf(r.nickname);
+            if (!id) return;
+            seen[id] = true;
+            if (!dirty[id] && typeof r.count === 'number') counts[id] = r.count;
+          });
+          var missing = ROSTER.filter(function (st) { return !seen[st.id] && !dirty[st.id]; })
+                              .map(function (st) { counts[st.id] = 0; return st.name; });
+          renderAll(); saveLocal();
+          return insertMissing(missing);
+        })
+        .then(function () { return push(); })
+        .then(function (ok) {
+          syncing = false;
+          if (ok !== false && !Object.keys(dirty).length) setOffline(false);
+        }, function () {
+          syncing = false;
+          goOffline();
+        });
+    }
+
+    // ── 화면 ────────────────────────────────────────────
+    function leavesHtml(n, newOne) {
+      var h = '';
+      for (var j = 0; j < n; j++) h += (newOne && j === n - 1) ? '<span class="new">🌿</span>' : '🌿';
+      return h || '<span style="opacity:.35">🌱</span>';
+    }
+    function buildList() {
+      listEl.innerHTML = '';
+      ROSTER.forEach(function (st) {
+        var li = document.createElement('li');
+        li.className = 'att-row';
+        li.dataset.id = st.id;
+        li.innerHTML =
+          '<div class="att-who"><span class="att-emoji" aria-hidden="true">' + EMOJI[st.id] + '</span><span class="att-name"></span></div>' +
+          '<div class="att-mid"><span class="att-leaves"></span><span class="att-count"></span></div>' +
+          '<div class="att-pm">' +
+            '<button type="button" class="att-btn minus" aria-label="' + st.name + ' 1번 빼기">−</button>' +
+            '<button type="button" class="att-btn plus" aria-label="' + st.name + ' 1번 더하기">＋</button>' +
+          '</div>';
+        li.querySelector('.att-name').textContent = st.name;
+        li.querySelector('.plus').addEventListener('click', function () { change(st.id, 1); });
+        li.querySelector('.minus').addEventListener('click', function () { change(st.id, -1); });
+        listEl.appendChild(li);
+      });
+    }
+    function renderRow(id, grewNow) {
+      var li = listEl.querySelector('[data-id="' + id + '"]');
+      if (!li) return;
+      var n = counts[id] || 0;
+      li.querySelector('.att-leaves').innerHTML = leavesHtml(n, grewNow);
+      li.querySelector('.att-count').textContent = n + '번';
+      li.querySelector('.minus').disabled = n === 0;
+    }
+    function renderSummary() {
+      var total = 0, max = 0;
+      ROSTER.forEach(function (st) { total += counts[st.id] || 0; max = Math.max(max, counts[st.id] || 0); });
+      document.getElementById('attTotal').textContent = total;
+      var best = document.getElementById('attBest');
+      if (max === 0) { best.textContent = '아직 없어요'; return; }
+      var tops = ROSTER.filter(function (st) { return (counts[st.id] || 0) === max; });
+      best.textContent = tops.map(function (st) { return EMOJI[st.id] + ' ' + st.name; }).join(', ') + ' (' + max + '번)';
+    }
+    function renderAll() {
+      ROSTER.forEach(function (st) { renderRow(st.id, false); });
+      renderSummary();
+    }
+
+    // ── 누를 때마다: 화면 → 기기 저장 → Supabase 저장 ─────────
+    function change(id, d) {
+      var n = Math.max(0, (counts[id] || 0) + d);
+      if (n === counts[id]) return;
+      counts[id] = n;
+      dirty[id] = true;
+      renderRow(id, d > 0);
+      renderSummary();
+      saveLocal();
+      schedulePush();
+    }
+
+    // 오늘 모두 ＋1 (실수 방지: 한 번 더 눌러야 실행)
+    var confirmT = null;
+    allBtn.addEventListener('click', function () {
+      if (!allBtn.classList.contains('confirm')) {
+        allBtn.classList.add('confirm');
+        allBtn.textContent = '한 번 더 누르면 모두 ＋1 해요';
+        confirmT = setTimeout(function () { allBtn.classList.remove('confirm'); allBtn.textContent = '🌱 오늘 모두 ＋1'; }, 3000);
+        return;
+      }
+      clearTimeout(confirmT);
+      allBtn.classList.remove('confirm'); allBtn.textContent = '🌱 오늘 모두 ＋1';
+      ROSTER.forEach(function (st) { counts[st.id] = (counts[st.id] || 0) + 1; dirty[st.id] = true; });
+      ROSTER.forEach(function (st) { renderRow(st.id, true); });
+      renderSummary(); saveLocal(); schedulePush(0);
+    });
+
+    // 출석 처음부터: 한 번 누르면 "정말 지울까요?", 한 번 더 눌러야 지움
+    var resetT = null;
+    function resetLabel() { resetBtn.classList.remove('confirm'); resetBtn.textContent = '↺ 출석 처음부터'; }
+    resetBtn.addEventListener('click', function () {
+      if (!resetBtn.classList.contains('confirm')) {
+        resetBtn.classList.add('confirm');
+        resetBtn.textContent = '정말 지울까요?';
+        resetT = setTimeout(resetLabel, 4000);
+        return;
+      }
+      clearTimeout(resetT);
+      resetLabel();
+      ROSTER.forEach(function (st) { counts[st.id] = 0; dirty[st.id] = true; });
+      renderAll(); saveLocal(); schedulePush(0);
+    });
+
+    buildList();
+    renderAll();
+    showNote('');
+
+    // 페이지를 열면 Supabase에서 불러오기. 다시 연결되거나 출석 탭을 열 때도 맞춰 봄
+    try { sync(); } catch (e) { goOffline(); }
+    window.addEventListener('online', function () { try { sync(); } catch (e) {} });
+    var tabBtn = document.getElementById('tab-attendance');
+    if (tabBtn) tabBtn.addEventListener('click', function () { try { sync(); } catch (e) {} });
   })();
 
   // 페이지를 열면 항상 '공과' 탭부터
